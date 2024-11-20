@@ -1,11 +1,24 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Literacy;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/literacias', function () {
+    $literacies = Literacy::all();
+    return view('literacies.index', compact('literacies'));
+});
+
+Route::get('/literacias/{slug}', function ($slug) {
+    $literacy = Literacy::where('slug', $slug)->first();    
+    return view('literacies.show', compact('literacy'));
+});
+
+
 
 Route::get('/sobre', function () {
     return view('about');
