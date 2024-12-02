@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Literacy;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class LiteracySeeder extends Seeder
 {
@@ -13,11 +14,13 @@ class LiteracySeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('literacies')->truncate();
+
         Literacy::create([
             'name' => 'Literacia Digital',
             'slug' => 'ld',
             'description' => 'A literacia digital refere-se à capacidade de utilizar a tecnologia com sucesso e eficácia, em diversas formas e para diversos fins.',
-            'image' => 'digitalization.png'          
+            'image' => 'digital.jpeg'          
         ]);
 
         Literacy::create([
