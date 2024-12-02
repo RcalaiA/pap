@@ -25,7 +25,7 @@
                             <div class="py-1"><a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Sign out</a></div>
                         </div>
                     </li>
-                    <li><a href="/categories" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Categorias</a></li>
+                    <li><a href="/literacias" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Literacias</a></li>
                     <li><a href="#" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Comunidade</a></li>
                     <li><a href="#" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Contact</a></li>
                 </ul>

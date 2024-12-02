@@ -18,8 +18,6 @@ Route::get('/literacias/{slug}', function ($slug) {
     return view('literacies.show', compact('literacy'));
 });
 
-
-
 Route::get('/sobre', function () {
     return view('about');
 });
