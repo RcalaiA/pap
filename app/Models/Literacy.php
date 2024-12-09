@@ -9,4 +9,5 @@ class Literacy extends Model
 {
     /** @use HasFactory<\Database\Factories\LiteracyFactory> */
     use HasFactory;
+    protected $guarded = [];
 }

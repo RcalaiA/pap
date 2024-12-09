@@ -27,7 +27,7 @@ class LiteracySeeder extends Seeder
             'name' => 'Literacia de Computação',
             'slug' => 'lc',
             'description' => 'A literacia informática é definida como o conhecimento e a capacidade de utilizar computadores e tecnologias relacionadas de forma eficiente, com níveis de competências que vão desde a utilização elementar até à programação de computadores e à resolução avançada de problemas.',
-            'image' => 'computer.png'          
+            'image' => 'digitalization.png'          
         ]);
 
         Literacy::create([

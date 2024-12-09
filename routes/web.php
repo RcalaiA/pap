@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Literacy;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,10 +14,6 @@ Route::get('/literacias', function () {
     return view('literacies.index', compact('literacies'));
 });
 
-Route::get('/literacias/{slug}', function ($slug) {
-    $literacy = Literacy::where('slug', $slug)->first();    
-    return view('literacies.show', compact('literacy'));
-});
 
 Route::get('/sobre', function () {
     return view('about');
@@ -29,6 +26,24 @@ Route::get('/categories', function () {
 
 Route::get('/categories/create', function () {
     return view('categories.create');
+});
+
+Route::get('/literacias/create', function () {
+    return view('literacies.create');
+});
+
+Route::get('/literacias/{slug}', function ($slug) {
+    $literacy = Literacy::where('slug', $slug)->first();    
+    return view('literacies.show', compact('literacy'));
+});
+
+Route::post('/literacias/store', function (Request $request) {
+    Literacy::create([
+        'name' => $request->input('name'),
+        'slug' => $request->input('slug'),
+        'description' => $request->input('description'),
+        'image' => $request->input('image'),
+    ]);
 });
 
 Route::middleware([
