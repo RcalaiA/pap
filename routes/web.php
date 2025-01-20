@@ -32,8 +32,8 @@ Route::get('/literacias/create', function () {
     return view('literacies.create');
 });
 
-Route::get('/literacias/{slug}', function ($slug) {
-    $literacy = Literacy::where('slug', $slug)->first();    
+Route::get('/literacias/{slug}', function ($slug) {    
+    $literacy = Literacy::where('slug', $slug)->with('documents')->first();    
     return view('literacies.show', compact('literacy'));
 });
 

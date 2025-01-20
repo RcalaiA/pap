@@ -23,7 +23,7 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
-
+        <x-footer/>
         @livewireScripts
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     </body>

@@ -14,7 +14,7 @@ class LiteracySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('literacies')->truncate();
+        //DB::table('literacies')->truncate();
 
         Literacy::create([
             'name' => 'Literacia Digital',
