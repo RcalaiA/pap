@@ -38,11 +38,18 @@ Route::get('/literacias/{slug}', function ($slug) {
 });
 
 Route::post('/literacias/store', function (Request $request) {
+    $validated = $request->validate([
+        'name' => 'required|min:3',        
+        'slug' => 'required',
+        'image' => 'image',
+        'description' => 'min:3'
+    ]);
+
     Literacy::create([
         'name' => $request->input('name'),
         'slug' => $request->input('slug'),
         'description' => $request->input('description'),
-        'image' => $request->input('image'),
+        'image' => ($request->file('image')->getClientOriginalName()),
     ]);
 });
 
