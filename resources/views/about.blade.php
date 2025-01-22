@@ -1,3 +1,3 @@
-<x-guestLayout/>
+<x-guestLayout>
 sobre
-<x-footer/>
+</x-guestLayout>
