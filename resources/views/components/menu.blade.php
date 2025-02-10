@@ -2,9 +2,11 @@
     <!-- Header branco -->
     <nav class="border-gray-200 bg-white">
         <div class="container mx-auto flex flex-wrap items-center justify-between p-4">
-            <a href="/" class="flex items-center">
+        <a href="/" class="flex items-center">
+            <img src="{{ asset('images/logos/logo2.png') }}" alt="Literacias" class="h-10 mr-3">
+            <!--<a href="/" class="flex items-center">-->
                 <!-- Novo logotipo -->
-                <img src="logo1.png" alt="Literacias" class="h-10 mr-3">
+                <!--<img src="logo.png" alt="Literacias" class="h-10 mr-3">-->
                 <!-- Removendo o texto e ajustando se necessário -->
             </a>
             <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu" aria-expanded="false">

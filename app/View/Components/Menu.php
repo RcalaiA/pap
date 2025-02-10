@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Menu extends Component
-{
+{   
     /**
      * Create a new component instance.
      */
