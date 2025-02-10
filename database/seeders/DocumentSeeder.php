@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Document;
+use App\Models\Literacy;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,8 @@ class DocumentSeeder extends Seeder
      */
     public function run(): void
     {
-        $literacy_id = 3;
+        $financial_id = Literacy::where('slug', 'lf')->first()->id;        
+        $digital_id = Literacy::where('slug', 'ld')->first()->id;        
 
         $document = Document::create([
             'title' => 'Referencial de Educação Financeira',
@@ -25,7 +27,7 @@ class DocumentSeeder extends Seeder
         
         DB::table('document_literacy')->insert([
             'document_id' => $document->id,
-            'literacy_id' => $literacy_id,
+            'literacy_id' => $financial_id,
         ]);
 
         $document = Document::create([
@@ -41,7 +43,12 @@ Implementação para o período 2023-2028.',
 
         DB::table('document_literacy')->insert([
             'document_id' => $document->id,
-            'literacy_id' => $literacy_id,
+            'literacy_id' => $financial_id,
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $digital_id,
         ]);
         
 
