@@ -46,7 +46,5 @@ Implementação para o período 2023-2028.',
             ['document_id' => $document->id, 'literacy_id' => $digital_id]
         ]);        
         
-
-
     }
 }

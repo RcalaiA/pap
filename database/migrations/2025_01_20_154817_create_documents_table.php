@@ -26,6 +26,8 @@ return new class extends Migration
         Schema::create('document_literacy', function (Blueprint $table) {               
             $table->foreignIdFor(Document::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Literacy::class)->constrained()->cascadeOnDelete();
+
+            $table->unique(['document_id', 'literacy_id']);
         });
 
     }
