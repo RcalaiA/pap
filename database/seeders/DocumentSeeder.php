@@ -41,15 +41,10 @@ Implementação para o período 2023-2028.',
             'url' => 'https://www.bportugal.pt/sites/default/files/anexos/pdf-boletim/estrategia_de_literacia_financeira_digital_para_portugal.pdf'
         ]);
 
-        DB::table('document_literacy')->insert([
-            'document_id' => $document->id,
-            'literacy_id' => $financial_id,
-        ]);
-
-        DB::table('document_literacy')->insert([
-            'document_id' => $document->id,
-            'literacy_id' => $digital_id,
-        ]);
+        DB::table('document_literacy')->insertOrIgnore([
+            ['document_id' => $document->id, 'literacy_id' => $financial_id],
+            ['document_id' => $document->id, 'literacy_id' => $digital_id]
+        ]);        
         
 
 
