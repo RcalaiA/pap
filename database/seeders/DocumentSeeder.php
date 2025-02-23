@@ -41,10 +41,25 @@ Implementação para o período 2023-2028.',
             'url' => 'https://www.bportugal.pt/sites/default/files/anexos/pdf-boletim/estrategia_de_literacia_financeira_digital_para_portugal.pdf'
         ]);
 
-        DB::table('document_literacy')->insertOrIgnore([
+        DB::table('document_literacy')->insert([
             ['document_id' => $document->id, 'literacy_id' => $financial_id],
             ['document_id' => $document->id, 'literacy_id' => $digital_id]
         ]);        
         
+        $document = Document::create([
+            'title' => 'Core Competencies for Financial Education',
+            'image' => 'Core Competencies for Financial Education.png',
+            'description' => 'According to the Organisation for Economic Co-operation and Development (OECD) (2006) , Financial
+Education is the process by which financial consumers improve their understanding of financial products
+and concepts and develop the skills and confidence to become more aware of financial risks and
+opportunities, make informed choices, know where to go for help and adopt behaviour that improves their
+financial well-being.',
+            'url' => 'https://dge.mec.pt/sites/default/files/DSPE/core_competencies_for_financial_education.pdf'
+        ]);
+
+        DB::table('document_literacy')->insert([
+            ['document_id' => $document->id, 'literacy_id' => $financial_id],
+        ]);
+
     }
 }
