@@ -2,66 +2,57 @@
     <!-- Header branco -->
     <nav class="border-gray-200 bg-white">
         <div class="container mx-auto flex flex-wrap items-center justify-between p-4">
-        <a href="/" class="flex items-center">
-            <img src="{{ asset('images/logos/logo2.png') }}" alt="Literacias" class="h-12 mr-7">
-            <!--<a href="/" class="flex items-center">-->
-                <!-- Novo logotipo -->
-                <!--<img src="logo.png" alt="Literacias" class="h-10 mr-3">-->
-                <!-- Removendo o texto e ajustando se necessário -->
+            <a href="/" class="flex items-center">
+                <img src="{{ asset('images/logos/logo2.png') }}" alt="Literacias" class="h-12 mr-7">
             </a>
-            <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                </svg>
-            </button>
-            <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
-                <ul class="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
-                    <li>
-                        <a href="/literacias" class="bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded">
-                            Literacias
-                        </a>
-                    </li>
-                    <li class="relative">
-                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center">
-                            Literacias
-                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                        <div id="dropdownNavbar" class="hidden absolute bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44">
-                            <ul class="py-1" aria-labelledby="dropdownNavbarLink">
-                                <li><a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Dashboard</a></li>
-                                <li><a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Settings</a></li>
-                                <li><a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Earnings</a></li>
-                            </ul>
-                            <div class="py-1">
-                                <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Sign out</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="/literacias" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">
-                            Comunidade
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">
-                            Contact
-                        </a>
-                    </li>
-                </ul>
+
+            <div class="flex items-center space-x-8">
+                <!-- Links-->
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="/literacias" class="text-gray-700 hover:text-blue-700">Literacias</a>
+                    <a href="/comunidade" class="text-gray-700 hover:text-blue-700">Comunidade</a>
+                    <!-- <a href="/contacto" class="text-gray-700 hover:text-blue-700">Contacto</a> -->
+                </div>
+
+                <div class="relative">
+                    <button id="userDropdownBtn" class="focus:outline-none">
+                        <img src="{{ asset('images/logos/user_icon.png') }}" alt="User Icon" class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
+                    </button>
+
+                    <div id="userDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
+                        @auth
+                            <!-- Se estiver o email confirmado -->
+                            <a href="/user/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Defenições</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Sair</button>
+                            </form>
+                        @else
+                            <!-- Se NÃO estiver o email confirmado -->
+                            <a href="/login" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Entrar</a>
+                            <a href="/register" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Registar</a>
+                        @endauth
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
-    <!-- LINHA PRETA -->
-    <!--<div class="bg-black text-white">
-        <div class="container mx-auto flex flex-wrap items-center justify-center p-2">
-            <a class="px-4 py-1 text-sm"></a>
-            <a href="/html" class="px-4 py-1 text-sm hover:underline">Literacia Financeira</a>
-            <a href="/css" class="px-4 py-1 text-sm hover:underline">Literacia Computacional</a>
-            <a href="/css" class="px-4 py-1 text-sm hover:underline">Literacia Digital</a>
-            <a class="px-4 py-1 text-sm"><--</a>
-        </div>-->
-    </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const userDropdownBtn = document.getElementById("userDropdownBtn");
+    const userDropdownMenu = document.getElementById("userDropdownMenu");
+
+    userDropdownBtn.addEventListener("click", function (event) {
+        event.stopPropagation(); // Evita que o clique feche imediatamente
+        userDropdownMenu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!userDropdownBtn.contains(event.target) && !userDropdownMenu.contains(event.target)) {
+            userDropdownMenu.classList.add("hidden");
+        }
+    });
+});
+</script>
