@@ -1,4 +1,16 @@
 <div>
+    @auth
+        @if (!Auth::user()->hasVerifiedEmail())
+            <!-- Barra de aviso para verificação de e-mail -->
+            <div class="bg-black text-white text-center py-2">
+                <span>Por favor, verifique o seu email.</span>
+                <a href="{{ route('verification.notice') }}" class="ml-2 text-blue-400 underline hover:text-blue-600">
+                    Verificar agora
+                </a>
+            </div>
+        @endif
+    @endauth
+
     <!-- Header branco -->
     <nav class="border-gray-200 bg-white">
         <div class="container mx-auto flex flex-wrap items-center justify-between p-4">
@@ -7,11 +19,10 @@
             </a>
 
             <div class="flex items-center space-x-8">
-                <!-- Links-->
+                <!-- parte do header que não faz parte do icon-->
                 <div class="hidden md:flex md:items-center md:space-x-6">
                     <a href="/literacias" class="text-gray-700 hover:text-blue-700">Literacias</a>
                     <a href="/comunidade" class="text-gray-700 hover:text-blue-700">Comunidade</a>
-                    <!-- <a href="/contacto" class="text-gray-700 hover:text-blue-700">Contacto</a> -->
                 </div>
 
                 <div class="relative">
@@ -21,14 +32,13 @@
 
                     <div id="userDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
                         @auth
-                            <!-- Se estiver o email confirmado -->
-                            <a href="/user/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Defenições</a>
+                            <a href="/user/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Favoritos</a>
+                            <a href="/user/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Definições</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Sair</button>
                             </form>
                         @else
-                            <!-- Se NÃO estiver o email confirmado -->
                             <a href="/login" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Entrar</a>
                             <a href="/register" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Registar</a>
                         @endauth

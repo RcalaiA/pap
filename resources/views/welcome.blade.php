@@ -11,10 +11,14 @@
             <p class="mt-4 text-lg max-w-2xl">
                 Um espaço dedicado à promoção e ensino da literacia. Explore nossos recursos e junte-se à comunidade.
             </p>
-            <a href="/register" 
-               class="mt-6 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">
-                Junte-se a nós
-            </a>
+
+            @guest  {{-- Mostra o botão apenas para visitantes (não logados) --}}
+                <a href="/register" 
+                   class="mt-6 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">
+                    Junte-se a nós
+                </a>
+            @endguest
+
         </div>
     </div>
 </x-guestLayout>

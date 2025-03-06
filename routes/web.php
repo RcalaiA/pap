@@ -5,6 +5,7 @@ use App\Models\Literacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\FavoriteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,6 +53,10 @@ Route::post('/literacias/store', function (Request $request) {
         'description' => $request->input('description'),
         'image' => ($request->file('image')->getClientOriginalName()),
     ]);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favorite/{literacyId}', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 });
 
 Route::middleware([
