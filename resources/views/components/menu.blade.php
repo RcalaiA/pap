@@ -32,7 +32,7 @@
 
                     <div id="userDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
                         @auth
-                            <a href="/user/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Favoritos</a>
+                            <a href="{{ route('favorites.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Favoritos</a>
                             <a href="/user/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Definições</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

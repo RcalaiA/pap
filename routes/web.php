@@ -16,6 +16,9 @@ Route::get('/literacias', function () {
     return view('literacies.index', compact('literacies'));
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+});
 
 Route::get('/sobre', function () {
     return view('about');
