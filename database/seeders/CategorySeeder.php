@@ -24,5 +24,10 @@ class CategorySeeder extends Seeder
             'slug' => 'ced',
             'description' => 'Nesta categoria poderá encontrar informações sobre os domínios da área curricular de Cidadania e Desenvolvimento'            
         ]);
+
+        Category::create([
+            'name' => 'Bem-Estar Animal',
+            'slug' => 'animal',              
+        ]);
     }
 }

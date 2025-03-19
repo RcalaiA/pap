@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\FavoriteController;
+use App\Models\Story;
+use Illuminate\Support\Facades\Auth;
+
+Auth::loginUsingId(1);
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $stories = Story::all();        
+    return view('welcome', compact('stories'));
+})->name('welcome');
 
 Route::get('/literacias', function () {
     $literacies = Literacy::all();

@@ -5,3 +5,11 @@
 [x-cloak] {
     display: none;
 }
+
+h1 {
+    @apply text-5xl mt-6 mb-4 text-red-500 font-bold;
+}
+
+p {
+    @apply text-xl text-gray-700;
+}

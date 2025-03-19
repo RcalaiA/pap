@@ -21,8 +21,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            CategorySeeder::class,
             LiteracySeeder::class,
-            DocumentSeeder::class
+            DocumentSeeder::class,
+            StorySeeder::class,
+            HeroSeeder::class,
         ]);
     }
 }

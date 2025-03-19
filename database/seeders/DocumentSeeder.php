@@ -101,9 +101,16 @@ class DocumentSeeder extends Seeder
             'url' => 'https://dge.mec.pt/sites/default/files/ficheiros/literacia_em_media.pdf'
         ]);
         
+        $document = Document::create([
+            'title' => 'Salve o Ralph',
+            'image' => 'ralph.png',
+            'description' => 'Um vídeo que aborda o teste em animais na área da cosmética.',
+            'url' => 'https://www.youtube.com/watch?v=AjdMtLF0Z6w'
+        ]);
+
         DB::table('document_literacy')->insert([
             'document_id' => $document->id,
-            'literacy_id' => $media_id,
+            'literacy_id' => $environment_id,
         ]);
     }
 }
