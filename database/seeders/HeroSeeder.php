@@ -34,6 +34,7 @@ class HeroSeeder extends Seeder
             'image' => 'hero5.png',
             'title' => 'Estádio do Dragão',
             'subtitle' => 'Estádio do Dragão',
+            'link' => '/literacias/ld'
         ]);
     }
 }
