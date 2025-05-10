@@ -20,6 +20,15 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('url')->nullable();
             $table->string('image')->nullable();
+            $table->string('format'); // ex: "PDF", "Vídeo", etc.
+            $table->string('age_group'); // ex: "6-10", "Adultos", etc.
+            $table->boolean('is_interactive')->default(false);
+            $table->boolean('has_download')->default(false);
+            $table->integer('duration')->nullable(); // duração em minutos
+            $table->string('language'); // ex: "PT", "EN"
+            $table->string('font'); // criador ou site de origem
+            $table->date('published_at')->nullable(); // data de publicação
+
             $table->timestamps();
         });
 
@@ -29,7 +38,6 @@ return new class extends Migration
 
             $table->unique(['document_id', 'literacy_id']);
         });
-
     }
 
     /**

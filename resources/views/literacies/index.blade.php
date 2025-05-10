@@ -7,10 +7,8 @@
                         <div class="w-full sm:w-1/4 h-36 sm:h-48 overflow-hidden">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
                                  src="{{ asset('images/literacies/' . $literacy->image) }}"
-                                 alt="{{ $literacy->name }}"
-                                 loading="lazy">
+                                 alt="{{ $literacy->name }}" loading="lazy">
                         </div>
-
                         <div class="w-full sm:w-3/4 p-6 flex flex-col justify-center">
                             <h2 class="text-xl font-semibold text-gray-800 group-hover:text-blue-500 transition-colors">
                                 {{ $literacy->name }}
@@ -21,10 +19,8 @@
                         </div>
                     </article>
                 </a>
-
                 @auth
                     <button class="absolute top-2 right-2 favorite-btn" data-id="{{ $literacy->id }}">
-                        <!-- Verificar se o item está favoritado -->
                         <img src="{{ $literacy->isFavoritedByAuthUser() ? asset('images/fav/sim.png') : asset('images/fav/nao.png') }}" 
                              alt="Favorito" class="w-8 h-8">
                     </button>
@@ -38,8 +34,6 @@
             button.addEventListener('click', function () {
                 let literacyId = this.getAttribute('data-id');
                 let icon = this.querySelector('img');
-
-                // Enviar a requisição para alternar o estado do favorito
                 fetch(`/favorite/${literacyId}`, {
                     method: 'POST',
                     headers: {
@@ -50,7 +44,6 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // Atualizar o ícone baseado no estado de favorito
                     icon.src = data.favorited ? '{{ asset("images/fav/sim.png") }}' : '{{ asset("images/fav/nao.png") }}';
                 });
             });

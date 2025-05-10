@@ -67,6 +67,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/favorite/{literacyId}', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 });
 
+Route::post('/literacies/{id}/filter', [LiteracyController::class, 'filter'])->name('literacies.filter');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
