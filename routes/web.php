@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\LiteracyController;
+use App\Http\Controllers\DocumentController;
 use App\Models\Story;
 use Illuminate\Support\Facades\Auth;
 
 Auth::loginUsingId(1);
 
 Route::get('/', function () {
-    $stories = Story::all();        
+    $stories = Story::all();
     return view('welcome', compact('stories'));
 })->name('welcome');
 
@@ -21,35 +23,30 @@ Route::get('/literacias', function () {
     return view('literacies.index', compact('literacies'));
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
-});
+// Rota para filtrar os documentos
+Route::post('/documents/filter', [DocumentController::class, 'filtrar'])->name('documents.filter');
 
-Route::get('/sobre', function () {
-    return view('about');
-});
+// Rota para mostrar os detalhes de um documento
+Route::get('/documentos/{id}', [DocumentController::class, 'show'])->name('documents.show'); // Alterado para 'show'
 
-Route::get('/categories', function () {
-    $categories = Category::all();    
-    return view('categories.index', compact('categories'));
-});
-
-Route::get('/categories/create', function () {
-    return view('categories.create');
-});
-
+// Rota para criar literacia
 Route::get('/literacias/create', function () {
     return view('literacies.create');
 });
 
+// Rota para mostrar a literacia
 Route::get('/literacias/{slug}', function ($slug) {    
     $literacy = Literacy::where('slug', $slug)->with('documents')->first();    
     return view('literacies.show', compact('literacy'));
 });
 
+// Rota para filtrar literacias
+Route::post('/literacies/filter', [LiteracyController::class, 'filter'])->name('literacies.filter');
+
+// Rota para salvar literacia
 Route::post('/literacias/store', function (Request $request) {
     $validated = $request->validate([
-        'name' => 'required|min:3',        
+        'name' => 'required|min:3',
         'slug' => 'required',
         'image' => 'image',
         'description' => 'min:3'
@@ -63,12 +60,11 @@ Route::post('/literacias/store', function (Request $request) {
     ]);
 });
 
+// Rotas de favoritos e dashboard
 Route::middleware(['auth'])->group(function () {
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('/favorite/{literacyId}', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 });
-
-Route::post('/literacies/{id}/filter', [LiteracyController::class, 'filter'])->name('literacies.filter');
-
 
 Route::middleware([
     'auth:sanctum',

@@ -8,18 +8,28 @@
         {{-- Área de documentos --}}
         <div class="md:col-span-3">
             <div id="document-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                @include('partials.documents', ['documents' => $literacy->documents])
+                {{-- Atualizado: documentos são renderizados com links para a página de detalhes --}}
+                @foreach ($literacy->documents as $document)
+                    <a href="{{ route('documents.show', $document->id) }}" class="block bg-white border rounded p-4 hover:shadow transition">
+                        <h3 class="text-lg font-semibold text-gray-800">{{ $document->title }}</h3>
+                        <p class="text-sm text-gray-600 mt-1">{{ Str::limit($document->description, 80) }}</p>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
 
     {{-- Script para AJAX --}}
     <script>
-        document.getElementById('searchButton').addEventListener('click', function () {
+        document.getElementById('filterButton').addEventListener('click', function () {
             const checkedCategorias = [...document.querySelectorAll('input[name="categorias[]"]:checked')].map(e => e.value);
             const checkedTipos = [...document.querySelectorAll('input[name="tipos[]"]:checked')].map(e => e.value);
             const checkedCEs = [...document.querySelectorAll('input[name="CE[]"]:checked')].map(e => e.value);
             const search = document.getElementById('searchInputSidebar').value;
+            const formato = [...document.querySelectorAll('input[name="formato"]:checked')].map(e => e.value);
+            const faixa = [...document.querySelectorAll('input[name="faixa"]:checked')].map(e => e.value);
+            const idioma = [...document.querySelectorAll('input[name="idioma"]:checked')].map(e => e.value);
+            const ano = document.getElementById('ano-range').value;
 
             fetch('{{ route('literacies.filter', $literacy->id) }}', {
                 method: 'POST',
@@ -31,7 +41,11 @@
                     categorias: checkedCategorias,
                     tipos: checkedTipos,
                     CE: checkedCEs,
-                    search: search
+                    search: search,
+                    formato: formato,
+                    faixa: faixa,
+                    idioma: idioma,
+                    ano: ano
                 })
             })
             .then(response => response.json())

@@ -28,7 +28,7 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => true,
             'duration' => null,
-            'language' => 'PT',
+            'language' => 'Português',
             'font' => 'DGE',
             'published_at' => '2024-09-20',
         ]);
@@ -48,7 +48,7 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => true,
             'duration' => null,
-            'language' => 'PT',
+            'language' => 'Português',
             'font' => 'Banco de Portugal',
             'published_at' => '2024-10-15',
         ]);
@@ -68,7 +68,7 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => true,
             'duration' => null,
-            'language' => 'EN',
+            'language' => 'Inglês',
             'font' => 'OECD',
             'published_at' => '2025-01-12',
         ]);
@@ -87,7 +87,7 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => true,
             'duration' => null,
-            'language' => 'PT',
+            'language' => 'Português',
             'font' => 'DGE',
             'published_at' => '2024-11-05',
         ]);
@@ -107,7 +107,7 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => true,
             'duration' => null,
-            'language' => 'PT',
+            'language' => 'Português',
             'font' => 'APA / DGE',
             'published_at' => '2025-02-10',
         ]);
@@ -127,7 +127,7 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => true,
             'duration' => null,
-            'language' => 'PT',
+            'language' => 'Português',
             'font' => 'DGS / DGE',
             'published_at' => '2024-12-18',
         ]);
@@ -147,7 +147,7 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => true,
             'duration' => null,
-            'language' => 'PT',
+            'language' => 'Português',
             'font' => 'DGE / ERC',
             'published_at' => '2025-03-22',
         ]);
@@ -167,9 +167,9 @@ class DocumentSeeder extends Seeder
             'is_interactive' => false,
             'has_download' => false,
             'duration' => 4,
-            'language' => 'EN',
+            'language' => 'Inglês',
             'font' => 'Humane Society International',
-            'published_at' => '2025-04-05',
+            'published_at' => '2021-04-16',
         ]);
 
         DB::table('document_literacy')->insert([
