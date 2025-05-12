@@ -1,25 +1,25 @@
-<!-- Contêiner sticky para TODO o filtro -->
-<div class="sticky top-4 self-start h-fit border p-6 rounded-2xl shadow-md bg-white w-full max-w-xl">
+<!-- resources/views/partials/filtro-sidebar.blade.php -->
 
-  <form class="space-y-6" id="filter-form">
+<div class="sticky top-4 self-start h-fit border p-6 rounded-2xl shadow-md bg-white w-full max-w-xl">
+  <form action="{{ route('literacies.show', $literacy->slug) }}" method="GET" class="space-y-6">
 
     <!-- Barra de Pesquisa -->
     <div>
       <label class="block mb-2 font-bold" for="searchInputSidebar">Pesquisar Título</label>
-      <input type="text" id="searchInputSidebar" name="search" class="w-full px-4 py-2 border rounded-md" placeholder="Pesquise por título..." />
+      <input type="text" id="searchInputSidebar" name="search" class="w-full px-4 py-2 border rounded-md" placeholder="Pesquise por título..." value="{{ request('search') }}" />
     </div>
 
     <!-- Formato -->
     <div>
       <label class="block mb-2 font-bold">Formato</label>
       <div class="space-y-1">
-        <label><input type="checkbox" name="formato" value="PDF"> PDF</label><br>
-        <label><input type="checkbox" name="formato" value="Vídeo"> Vídeo</label><br>
-        <label><input type="checkbox" name="formato" value="Website"> Website</label><br>
-        <label><input type="checkbox" name="formato" value="Exercício Interativo"> Exercício Interativo</label><br>
-        <label><input type="checkbox" name="formato" value="Imagem / Infográfico"> Imagem / Infográfico</label><br>
-        <label><input type="checkbox" name="formato" value="Apresentação"> Apresentação</label><br>
-        <label><input type="checkbox" name="formato" value="Áudio / Podcast"> Áudio / Podcast</label>
+        <label><input type="checkbox" name="formato[]" value="PDF" {{ in_array('PDF', (array) request('formato', [])) ? 'checked' : '' }}> PDF</label><br>
+        <label><input type="checkbox" name="formato[]" value="Vídeo" {{ in_array('Vídeo', (array) request('formato', [])) ? 'checked' : '' }}> Vídeo</label><br>
+        <label><input type="checkbox" name="formato[]" value="Website" {{ in_array('Website', (array) request('formato', [])) ? 'checked' : '' }}> Website</label><br>
+        <label><input type="checkbox" name="formato[]" value="Exercício Interativo" {{ in_array('Exercício Interativo', (array) request('formato', [])) ? 'checked' : '' }}> Exercício Interativo</label><br>
+        <label><input type="checkbox" name="formato[]" value="Imagem / Infográfico" {{ in_array('Imagem / Infográfico', (array) request('formato', [])) ? 'checked' : '' }}> Imagem / Infográfico</label><br>
+        <label><input type="checkbox" name="formato[]" value="Apresentação" {{ in_array('Apresentação', (array) request('formato', [])) ? 'checked' : '' }}> Apresentação</label><br>
+        <label><input type="checkbox" name="formato[]" value="Áudio / Podcast" {{ in_array('Áudio / Podcast', (array) request('formato', [])) ? 'checked' : '' }}> Áudio / Podcast</label>
       </div>
     </div>
 
@@ -27,9 +27,9 @@
     <div>
       <label class="block mb-2 font-bold">Faixa Etária</label>
       <div class="space-y-1">
-        <label><input type="checkbox" name="faixa" value="Crianças (6-10 anos)"> Crianças (6-10 anos)</label><br>
-        <label><input type="checkbox" name="faixa" value="Adolescentes (11-17 anos)"> Adolescentes (11-17 anos)</label><br>
-        <label><input type="checkbox" name="faixa" value="Adultos (18 ou mais)"> Adultos (18 ou mais)</label>
+        <label><input type="checkbox" name="faixa[]" value="Crianças (6-10 anos)" {{ in_array('Crianças (6-10 anos)', (array) request('faixa', [])) ? 'checked' : '' }}> Crianças (6-10 anos)</label><br>
+        <label><input type="checkbox" name="faixa[]" value="Adolescentes (11-17 anos)" {{ in_array('Adolescentes (11-17 anos)', (array) request('faixa', [])) ? 'checked' : '' }}> Adolescentes (11-17 anos)</label><br>
+        <label><input type="checkbox" name="faixa[]" value="Adultos (18 ou mais)" {{ in_array('Adultos (18 ou mais)', (array) request('faixa', [])) ? 'checked' : '' }}> Adultos (18 ou mais)</label>
       </div>
     </div>
 
@@ -37,9 +37,9 @@
     <div>
       <label class="block mb-2 font-bold">Idioma</label>
       <div class="space-y-1">
-        <label><input type="checkbox" name="idioma" value="Português"> Português</label><br>
-        <label><input type="checkbox" name="idioma" value="Inglês"> Inglês</label><br>
-        <label><input type="checkbox" name="idioma" value="Espanhol"> Espanhol</label><br>
+        <label><input type="checkbox" name="idioma[]" value="Português" {{ in_array('Português', (array) request('idioma', [])) ? 'checked' : '' }}> Português</label><br>
+        <label><input type="checkbox" name="idioma[]" value="Inglês" {{ in_array('Inglês', (array) request('idioma', [])) ? 'checked' : '' }}> Inglês</label><br>
+        <label><input type="checkbox" name="idioma[]" value="Espanhol" {{ in_array('Espanhol', (array) request('idioma', [])) ? 'checked' : '' }}> Espanhol</label><br>
       </div>
     </div>
 
@@ -48,14 +48,14 @@
       <label for="ano-range" class="block mb-2 font-bold">Ano</label>
       <div class="flex items-center gap-4">
         <span id="ano-min">2000</span>
-        <input id="ano-range" name="ano" type="range" min="2000" max="2025" step="1" value="2012" class="w-full">
+        <input id="ano-range" name="ano" type="range" min="2000" max="2025" step="1" value="{{ request('ano', 2012) }}" class="w-full">
         <span id="ano-max">2025</span>
       </div>
     </div>
 
     <!-- Botão -->
     <div class="text-right pt-4">
-      <button type="button" id="filterButton" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
         Filtrar
       </button>
     </div>

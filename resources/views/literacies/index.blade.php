@@ -5,18 +5,13 @@
                 <a href="{{ url('literacias/' . $literacy->slug) }}" class="group block w-full">
                     <article class="flex flex-col sm:flex-row items-center sm:items-stretch border-2 border-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all bg-white">
                         <div class="w-full sm:w-1/4 h-36 sm:h-48 overflow-hidden">
-                            <!-- Alterado para usar a imagem do documento associado -->
-                            @php
-                                $document = $literacy->documents()->first(); // Recupera o primeiro documento associado ao literacy
-                            @endphp
-                            @if ($document && $document->image)
+                            @if ($literacy->image)
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
-                                     src="{{ asset('images/documents/' . $document->image) }}"
+                                     src="{{ asset('images/literacies/' . $literacy->image) }}"
                                      alt="{{ $literacy->name }}" loading="lazy">
                             @else
-                                <!-- Caso o documento não tenha imagem, exibe uma imagem padrão -->
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
-                                     src="{{ asset('images/documents/default.jpg') }}"
+                                     src="{{ asset('images/literacies/default.jpg') }}"
                                      alt="Imagem padrão" loading="lazy">
                             @endif
                         </div>
