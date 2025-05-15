@@ -11,17 +11,18 @@ class Literacy extends Model
 
     protected $guarded = [];
 
-    public function documents() {
+    public function documents()
+    {
         return $this->belongsToMany(Document::class);
     }
 
-    // Alterado para belongsToMany
-    public function favorites() {
+    public function favorites()
+    {
         return $this->belongsToMany(User::class, 'favorites');
     }
 
-    public function isFavoritedByAuthUser(){
-        return $this->favorites()->wherePivot('user_id', auth()->id())->exists();
+    public function isFavoritedByAuthUser()
+    {
+        return auth()->check() && $this->favorites()->wherePivot('user_id', auth()->id())->exists();
     }
 }
-

@@ -43,13 +43,20 @@
       </div>
     </div>
 
-    <!-- Ano -->
+    <!-- Ano (Intervalo de Datas) -->
     <div>
-      <label for="ano-range" class="block mb-2 font-bold">Ano</label>
-      <div class="flex items-center gap-4">
-        <span id="ano-min">2000</span>
-        <input id="ano-range" name="ano" type="range" min="2000" max="2025" step="1" value="{{ request('ano', 2012) }}" class="w-full">
-        <span id="ano-max">2025</span>
+      <label class="block mb-2 font-bold">Ano</label>
+      <div class="flex flex-col space-y-2">
+        <div>
+          <label for="data_inicio" class="block text-sm font-medium text-gray-700">De:</label>
+          <input type="date" id="data_inicio" name="data_inicio" class="w-full px-4 py-2 border rounded-md"
+                 value="{{ request('data_inicio') }}">
+        </div>
+        <div>
+          <label for="data_fim" class="block text-sm font-medium text-gray-700">Até:</label>
+          <input type="date" id="data_fim" name="data_fim" class="w-full px-4 py-2 border rounded-md"
+                 value="{{ request('data_fim') }}">
+        </div>
       </div>
     </div>
 

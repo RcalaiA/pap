@@ -1,22 +1,22 @@
 <?php
 
 use App\Models\Literacy;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LiteracyController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Auth;
 
+Auth::loginUsingId(1); // Corrigi o método para camelCase
+
 // Página inicial com histórias (caso necessário)
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-// Rota para listar todas as literacias
-Route::get('/literacias', function () {
-    $literacies = Literacy::all();
-    return view('literacies.index', compact('literacies'));
-})->name('literacies.index');
+// Rota para listar todas as literacias usando o método index do controller
+Route::get('/literacias', [LiteracyController::class, 'index'])->name('literacies.index');
 
 // Rota para mostrar os detalhes de uma literacia e seus documentos filtrados
 Route::get('/literacias/{slug}', [LiteracyController::class, 'show'])->name('literacies.show');
@@ -24,7 +24,7 @@ Route::get('/literacias/{slug}', [LiteracyController::class, 'show'])->name('lit
 // Rota para exibir os detalhes de um documento específico
 Route::get('/documentos/{id}', [DocumentController::class, 'show'])->name('documents.show');
 
-// Rota para filtrar documentos dentro de uma literacia
+// Rota para filtrar documentos dentro de uma literacia (caso exista o método filter no controller)
 Route::post('/literacies/{literacy}/filter', [LiteracyController::class, 'filter'])->name('literacies.filter');
 
 // Rota para salvar literacia
@@ -40,17 +40,20 @@ Route::post('/literacias/store', function (Request $request) {
         'name' => $request->input('name'),
         'slug' => $request->input('slug'),
         'description' => $request->input('description'),
-        'image' => ($request->file('image')->getClientOriginalName()),
+        'image' => $request->file('image')->getClientOriginalName(),
     ]);
 })->name('literacies.store');
 
-// Rota de favoritos e dashboard (requer autenticação)
+// Rotas protegidas por autenticação
 Route::middleware(['auth'])->group(function () {
     // Rota para ver favoritos
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     
     // Rota para adicionar ou remover um item dos favoritos
     Route::post('/favorite/{literacyId}', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
+
+    // Rota para curtir/descurtir documento
+    Route::post('/documentos/{document}/like', [DocumentController::class, 'toggleLike'])->name('documents.like');
 });
 
 // Rota para o dashboard (Jetstream)
@@ -63,4 +66,3 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-

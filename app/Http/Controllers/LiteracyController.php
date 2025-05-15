@@ -3,10 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Literacy;
 
 class LiteracyController extends Controller
 {
+    // NOVO: Lista todas as literacias, favoritas primeiro (para a página principal por exemplo)
+    public function index()
+    {
+        $literacies = Literacy::all();
+
+        if (Auth::check()) {
+            $literacies = $literacies->sortByDesc(function ($literacy) {
+                return $literacy->isFavoritedByAuthUser();
+            });
+        }
+
+        return view('literacies.index', compact('literacies')); // Altere o nome da view se necessário
+    }
+
+    // Já existente: Mostra uma literacia e seus documentos filtrados
     public function show($slug, Request $request)
     {
         $literacy = Literacy::where('slug', $slug)->firstOrFail();
@@ -35,11 +51,9 @@ class LiteracyController extends Controller
             $query->whereYear('created_at', '=', $request->input('ano'));
         }
 
-        // Paginação ou pegar todos os documentos
+        // Paginação dos documentos
         $documents = $query->paginate(12);
-
-        // Verifica se não há documentos após os filtros
-        $noDocuments = $documents->isEmpty();  // Se estiver vazio, significa que nenhum documento corresponde
+        $noDocuments = $documents->isEmpty();
 
         return view('literacies.show', compact('literacy', 'documents', 'noDocuments'));
     }

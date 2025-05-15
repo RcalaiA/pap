@@ -38,12 +38,29 @@
                     <p class="mb-6 text-gray-500 dark:text-gray-400">
                         {{ $document->description }}
                     </p>
+
+                    {{-- Botão de like --}}
+                    @auth
+                        <div class="flex items-center gap-2">
+                            <button id="like-btn" data-document-id="{{ $document->id }}" class="focus:outline-none">
+                                <img id="like-icon"
+                                     src="{{ auth()->user()->likedDocuments->contains($document->id) ? asset('images/like/like.png') : asset('images/like/no_like.png') }}"
+                                     alt="Like"
+                                     class="w-8 h-8" />
+                            </button>
+                            <span id="likes-count" class="text-gray-700 dark:text-gray-300">
+                                {{ $document->likes()->count() }}
+                            </span>
+                        </div>
+                    @else
+                        <p class="text-gray-500 italic">Faça login para curtir este documento.</p>
+                    @endauth
+
                 </div>
             </div>
 
             <!-- Nova seção com as informações horizontais -->
             <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Cada item é centralizado, e ocupa a largura completa em telas pequenas -->
                 <div class="flex flex-col items-center">
                     <strong class="text-gray-900 dark:text-white">Formato:</strong>
                     <p class="text-gray-500 dark:text-gray-400">{{ $document->format }}</p>
@@ -102,4 +119,32 @@
             </div>
         </div>
     </section>
+
+    {{-- Script do Like --}}
+    @auth
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#like-btn').click(function() {
+            var documentId = $(this).data('document-id');
+            $.ajax({
+                url: '/documentos/' + documentId + '/like',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    if(data.liked) {
+                        $('#like-icon').attr('src', '{{ asset('images/like/like.png') }}');
+                    } else {
+                        $('#like-icon').attr('src', '{{ asset('images/like/no_like.png') }}');
+                    }
+                    $('#likes-count').text(data.likes_count);
+                },
+                error: function() {
+                    alert('Erro ao registrar o like. Tente novamente.');
+                }
+            });
+        });
+    </script>
+    @endauth
 </x-guestLayout>
