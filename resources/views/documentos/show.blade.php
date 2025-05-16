@@ -60,7 +60,61 @@
 
             <!-- Nova seção com as informações horizontais -->
             <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- ... seus blocos de informações ... -->
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Formato:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">{{ $document->format }}</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Faixa Etária:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">{{ $document->age_group }}</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Interativo:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">
+                        {{ $document->is_interactive ? 'Sim' : 'Não' }}
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Possui Download:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">
+                        {{ $document->has_download ? 'Sim' : 'Não' }}
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Duração:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">
+                        @if($document->duration)
+                            {{ $document->duration }} minutos
+                        @else
+                            Não disponível
+                        @endif
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Idioma:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">{{ $document->language }}</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Fonte:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">{{ $document->font }}</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <strong class="text-gray-900 dark:text-white">Data de Publicação:</strong>
+                    <p class="text-gray-500 dark:text-gray-400">
+                        @if($document->published_at)
+                            {{ \Carbon\Carbon::parse($document->published_at)->format('d/m/Y') }}
+                        @else
+                            Não disponível
+                        @endif
+                    </p>
+                </div>
             </div>
 
             {{-- Comentários --}}
