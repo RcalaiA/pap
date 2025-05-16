@@ -118,11 +118,10 @@
             </div>
 
             {{-- Comentários --}}
-            <div class="mt-12 max-w-3xl mx-auto">
+            <div class="mt-12">
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Comentários</h2>
 
                 @auth
-                    {{-- Formulário principal para novo comentário --}}
                     <form id="comment-form" action="{{ route('comments.store', $document) }}" method="POST" class="mb-6">
                         @csrf
                         <textarea name="content" rows="4" required
@@ -137,12 +136,9 @@
                     <p class="text-gray-500 italic">Faça login para comentar.</p>
                 @endauth
 
-                {{-- Listagem de comentários e respostas --}}
                 <div>
                     @if ($document->comments->where('parent_id', null)->count() > 0)
-
                         @php
-                            // Função recursiva para renderizar comentários e respostas no Blade
                             function renderComments($comments, $document) {
                                 foreach ($comments as $comment) {
                                     echo '<div class="mb-4 p-4 border border-gray-200 rounded dark:border-gray-700 dark:bg-gray-800">';
@@ -153,8 +149,6 @@
 
                                     if(auth()->check()) {
                                         echo '<button class="reply-btn mt-2 text-blue-600 hover:underline focus:outline-none" data-comment-id="'.$comment->id.'">Responder</button>';
-
-                                        // Formulário resposta, oculto inicialmente
                                         echo '<form action="'.route('comments.store', $document).'" method="POST" class="reply-form mt-2 hidden" data-parent-id="'.$comment->id.'">';
                                         echo csrf_field();
                                         echo '<textarea name="content" rows="3" required class="w-full p-2 border border-gray-300 rounded dark:bg-gray-800 dark:border-gray-700 dark:text-white" placeholder="Escreva sua resposta aqui..."></textarea>';
@@ -163,7 +157,6 @@
                                         echo '</form>';
                                     }
 
-                                    // Exibir respostas recursivamente
                                     if ($comment->replies && $comment->replies->count() > 0) {
                                         echo '<div class="ml-6 mt-4 border-l-2 border-gray-300 dark:border-gray-600 pl-4">';
                                         renderComments($comment->replies, $document);
@@ -214,7 +207,6 @@
             });
         });
 
-        // Toggle formulário de resposta
         $(document).on('click', '.reply-btn', function() {
             var commentId = $(this).data('comment-id');
             var form = $('.reply-form[data-parent-id="'+commentId+'"]');
