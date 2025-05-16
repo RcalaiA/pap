@@ -55,72 +55,86 @@
                     @else
                         <p class="text-gray-500 italic">Faça login para curtir este documento.</p>
                     @endauth
-
                 </div>
             </div>
 
             <!-- Nova seção com as informações horizontais -->
             <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Formato:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">{{ $document->format }}</p>
-                </div>
+                <!-- ... seus blocos de informações ... -->
+            </div>
 
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Faixa Etária:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">{{ $document->age_group }}</p>
-                </div>
+            {{-- Comentários --}}
+            <div class="mt-12 max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Comentários</h2>
 
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Interativo:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        {{ $document->is_interactive ? 'Sim' : 'Não' }}
-                    </p>
-                </div>
+                @auth
+                    {{-- Formulário principal para novo comentário --}}
+                    <form id="comment-form" action="{{ route('comments.store', $document) }}" method="POST" class="mb-6">
+                        @csrf
+                        <textarea name="content" rows="4" required
+                            class="w-full p-3 border border-gray-300 rounded dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            placeholder="Escreva seu comentário aqui..."></textarea>
+                        <button type="submit"
+                                class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                            Enviar comentário
+                        </button>
+                    </form>
+                @else
+                    <p class="text-gray-500 italic">Faça login para comentar.</p>
+                @endauth
 
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Possui Download:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        {{ $document->has_download ? 'Sim' : 'Não' }}
-                    </p>
-                </div>
+                {{-- Listagem de comentários e respostas --}}
+                <div>
+                    @if ($document->comments->where('parent_id', null)->count() > 0)
 
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Duração:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        @if($document->duration)
-                            {{ $document->duration }} minutos
-                        @else
-                            Não disponível
-                        @endif
-                    </p>
-                </div>
+                        @php
+                            // Função recursiva para renderizar comentários e respostas no Blade
+                            function renderComments($comments, $document) {
+                                foreach ($comments as $comment) {
+                                    echo '<div class="mb-4 p-4 border border-gray-200 rounded dark:border-gray-700 dark:bg-gray-800">';
+                                    echo '<p class="text-gray-800 dark:text-gray-300">'.e($comment->content).'</p>';
+                                    echo '<div class="mt-2 text-sm text-gray-500 dark:text-gray-400">';
+                                    echo 'Por <strong>'.e($comment->user->name).'</strong> em '.$comment->created_at->format('d/m/Y H:i');
+                                    echo '</div>';
 
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Idioma:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">{{ $document->language }}</p>
-                </div>
+                                    if(auth()->check()) {
+                                        echo '<button class="reply-btn mt-2 text-blue-600 hover:underline focus:outline-none" data-comment-id="'.$comment->id.'">Responder</button>';
 
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Fonte:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">{{ $document->font }}</p>
-                </div>
+                                        // Formulário resposta, oculto inicialmente
+                                        echo '<form action="'.route('comments.store', $document).'" method="POST" class="reply-form mt-2 hidden" data-parent-id="'.$comment->id.'">';
+                                        echo csrf_field();
+                                        echo '<textarea name="content" rows="3" required class="w-full p-2 border border-gray-300 rounded dark:bg-gray-800 dark:border-gray-700 dark:text-white" placeholder="Escreva sua resposta aqui..."></textarea>';
+                                        echo '<input type="hidden" name="parent_id" value="'.$comment->id.'">';
+                                        echo '<button type="submit" class="mt-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-3 rounded">Enviar resposta</button>';
+                                        echo '</form>';
+                                    }
 
-                <div class="flex flex-col items-center">
-                    <strong class="text-gray-900 dark:text-white">Data de Publicação:</strong>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        @if($document->published_at)
-                            {{ \Carbon\Carbon::parse($document->published_at)->format('d/m/Y') }}
-                        @else
-                            Não disponível
-                        @endif
-                    </p>
+                                    // Exibir respostas recursivamente
+                                    if ($comment->replies && $comment->replies->count() > 0) {
+                                        echo '<div class="ml-6 mt-4 border-l-2 border-gray-300 dark:border-gray-600 pl-4">';
+                                        renderComments($comment->replies, $document);
+                                        echo '</div>';
+                                    }
+
+                                    echo '</div>';
+                                }
+                            }
+                        @endphp
+
+                        @php
+                            $rootComments = $document->comments->where('parent_id', null);
+                            renderComments($rootComments, $document);
+                        @endphp
+
+                    @else
+                        <p class="text-gray-500 italic">Nenhum comentário ainda.</p>
+                    @endif
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- Script do Like --}}
+    {{-- Script do Like e toggle formulário resposta --}}
     @auth
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -144,6 +158,13 @@
                     alert('Erro ao registrar o like. Tente novamente.');
                 }
             });
+        });
+
+        // Toggle formulário de resposta
+        $(document).on('click', '.reply-btn', function() {
+            var commentId = $(this).data('comment-id');
+            var form = $('.reply-form[data-parent-id="'+commentId+'"]');
+            form.toggleClass('hidden');
         });
     </script>
     @endauth

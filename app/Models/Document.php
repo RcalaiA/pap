@@ -21,4 +21,10 @@ class Document extends Model
     {
         return $this->belongsToMany(User::class, 'document_likes')->withTimestamps();
     }
+
+    // Relação 1 para muitos com comentários
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

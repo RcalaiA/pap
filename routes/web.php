@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LiteracyController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\CommentController; // Importar o CommentController
 use Illuminate\Support\Facades\Auth;
 
 Auth::loginUsingId(1); // Corrigi o método para camelCase
@@ -54,6 +55,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Rota para curtir/descurtir documento
     Route::post('/documentos/{document}/like', [DocumentController::class, 'toggleLike'])->name('documents.like');
+
+    // Rota para criar um comentário em um documento
+    Route::post('/documentos/{document}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+    // Rota para deletar um comentário (se quiser permitir deletar)
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 // Rota para o dashboard (Jetstream)
