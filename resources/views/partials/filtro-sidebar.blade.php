@@ -39,7 +39,6 @@
       <div class="space-y-1">
         <label><input type="checkbox" name="idioma[]" value="Português" {{ in_array('Português', (array) request('idioma', [])) ? 'checked' : '' }}> Português</label><br>
         <label><input type="checkbox" name="idioma[]" value="Inglês" {{ in_array('Inglês', (array) request('idioma', [])) ? 'checked' : '' }}> Inglês</label><br>
-        <label><input type="checkbox" name="idioma[]" value="Espanhol" {{ in_array('Espanhol', (array) request('idioma', [])) ? 'checked' : '' }}> Espanhol</label><br>
       </div>
     </div>
 

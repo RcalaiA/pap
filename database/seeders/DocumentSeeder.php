@@ -17,6 +17,7 @@ class DocumentSeeder extends Seeder
         $environment_id = Literacy::where('slug', 'la')->first()->id;
         $health_id = Literacy::where('slug', 'ls')->first()->id;
         $media_id = Literacy::where('slug', 'lm')->first()->id;
+        $computation_id = Literacy::where('slug', 'lc')->first()->id;
 
         $document = Document::create([
             'title' => 'Referencial de Educação Financeira',
@@ -175,6 +176,211 @@ class DocumentSeeder extends Seeder
         DB::table('document_literacy')->insert([
             'document_id' => $document->id,
             'literacy_id' => $environment_id,
+        ]);
+
+        $document = Document::create([ ///////////////////////////////////////
+            'title' => 'Literacias Digitais',
+            'image' => 'literacias_digitais_uab.png',
+            'description' => 'Este texto orientador da Universidade Aberta explora os conceitos e práticas relacionadas com literacias digitais no contexto da aprendizagem ao longo da vida.',
+            'url' => 'https://repositorioaberto.uab.pt/bitstream/10400.2/6017/1/Literacias%20Digitais_Texto_Orientador_VF.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'Universidade Aberta',
+            'published_at' => '2020-03-10',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $digital_id,
+        ]);
+
+        $document = Document::create([  
+            'title' => 'Computer Literacy',
+            'image' => 'computer_literacy_pcc.png',
+            'description' => 'Manual introdutório para literacia em computação, cobrindo os conceitos básicos de hardware, software, internet e segurança digital.',
+            'url' => 'https://pcc.palau.edu/wp-content/uploads/2021/01/IT100-Book-Revised-7.01.2020.pdf',
+            'format' => 'PDF',
+            'age_group' => '18+',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'Palau Community College',
+            'published_at' => '2020-07-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $computation_id,
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $media_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'COMPASS – Manual para a Educação para os Direitos Humanos com Jovens',
+            'image' => 'compass_direitos_humanos.png',
+            'description' => 'Recurso pedagógico do Conselho da Europa que oferece atividades práticas e conteúdos para trabalhar os Direitos Humanos com jovens.',
+            'url' => 'https://gulbenkian.pt/wp-content/uploads/2017/01/compass_2016_pt.pdf',
+            'format' => 'PDF',
+            'age_group' => '15-25',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'Conselho da Europa',
+            'published_at' => '2016-01-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $rights_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'The Human Rights Education Handbook',
+            'image' => 'human_rights_handbook.png',
+            'description' => 'Manual prático para educadores que desejam implementar programas eficazes de educação em direitos humanos.',
+            'url' => 'https://hrlibrary.umn.edu/edumat/pdf/hreh.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'University of Minnesota',
+            'published_at' => '2000-01-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $rights_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'Literacia Ambiental: Um Desafio à Didática e à Matética',
+            'image' => 'literacia_ambiental_uma.png',
+            'description' => 'Estudo que aborda a importância da literacia ambiental na educação, destacando desafios e estratégias pedagógicas.',
+            'url' => 'https://digituma.uma.pt/bitstream/10400.13/2088/1/LITERACIA%20AMBIENTAL.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'Universidade da Madeira',
+            'published_at' => '2010-01-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $environment_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'Environmental Literacy: Setting the Stage',
+            'image' => 'environmental_literacy_stanford.png',
+            'description' => 'Relatório do Stanford Social Ecology Lab que estabelece as bases para a compreensão da literacia ambiental.',
+            'url' => 'https://ed.stanford.edu/sites/default/files/news/images/stanfordsocialecologylab-brief-1.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'Stanford University',
+            'published_at' => '2018-08-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $environment_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'Manual de Boas Práticas: Literacia em Saúde – Capacitação dos Profissionais de Saúde',
+            'image' => 'manual_literacia_saude.png',
+            'description' => 'Guia para profissionais de saúde com estratégias para melhorar a comunicação e promover a literacia em saúde.',
+            'url' => 'https://splsportugal.com/wp-content/uploads/2023/07/2019-manual-de-boas-praticas-literacia-em-saude.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'Direção-Geral da Saúde',
+            'published_at' => '2019-01-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $health_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'Health Literacy Insights for Health Crises',
+            'image' => 'health_literacy_insights.png',
+            'description' => 'Discussão sobre a importância da literacia em saúde durante crises de saúde pública, com recomendações para comunicação eficaz.',
+            'url' => 'https://nam.edu/wp-content/uploads/2017/07/Health-Literacy-Insights-for-Health-Crises.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'National Academy of Medicine',
+            'published_at' => '2017-07-17',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $health_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'Literacia para os Media – Horizontes Concetuais e Mapeamento de Atores e Iniciativas em Portugal e no Mundo',
+            'image' => 'literacia_media_milobs.png',
+            'description' => 'Estudo que analisa as abordagens e iniciativas de literacia para os media em Portugal e internacionalmente.',
+            'url' => 'https://milobs.pt/wp-content/uploads/2023/04/Literacia-para-os-Media-%E2%80%93-Horizontes-concetuais-e-mapeamento-de-atores-e-iniciativas-em-Portugal-e-no-mundo.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'MILObs',
+            'published_at' => '2023-04-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $media_id,
+        ]);
+
+        $document = Document::create([
+            'title' => 'Introduction to Media Literacy',
+            'image' => 'intro_media_literacy_occ.png',
+            'description' => 'Guia introdutório que define e explora os princípios da literacia para os media, com foco em análise crítica e criação de conteúdo.',
+            'url' => 'https://media.ocean.edu/files/OCC_VIDEO/upload/Faculty_Resources/dbordelon2/dbordelon/151website/IntroMediaLiteracy.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'Ocean County College',
+            'published_at' => '2010-01-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $media_id,
         ]);
     }
 }

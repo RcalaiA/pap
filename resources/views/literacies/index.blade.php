@@ -39,9 +39,17 @@
                     </article>
                 </a>
                 @auth
-                    <button class="absolute top-2 right-2 favorite-btn" data-id="{{ $literacy->id }}">
-                        <img src="{{ asset('images/fav/sim.png') }}" alt="Favorito" class="w-8 h-8">
-                    </button>
+                    @if (auth()->user()->hasVerifiedEmail())
+                        <button class="absolute top-2 right-2 favorite-btn" data-id="{{ $literacy->id }}">
+                            <img src="{{ asset('images/fav/sim.png') }}" alt="Favorito" class="w-8 h-8">
+                        </button>
+                    @else
+                        <div class="absolute top-2 right-2">
+                            <span title="Verifica o teu email para usar favoritos">
+                                <img src="{{ asset('images/fav/sim.png') }}" class="w-8 h-8 opacity-50 cursor-not-allowed">
+                            </span>
+                        </div>
+                    @endif
                 @endauth
             </div>
         @endforeach
@@ -94,9 +102,17 @@
                     </article>
                 </a>
                 @auth
-                    <button class="absolute top-2 right-2 favorite-btn" data-id="{{ $literacy->id }}">
-                        <img src="{{ asset('images/fav/nao.png') }}" alt="Não favorito" class="w-8 h-8">
-                    </button>
+                    @if (auth()->user()->hasVerifiedEmail())
+                        <button class="absolute top-2 right-2 favorite-btn" data-id="{{ $literacy->id }}">
+                            <img src="{{ asset('images/fav/nao.png') }}" alt="Não favorito" class="w-8 h-8">
+                        </button>
+                    @else
+                        <div class="absolute top-2 right-2">
+                            <span title="Verifica o teu email para usar favoritos">
+                                <img src="{{ asset('images/fav/nao.png') }}" class="w-8 h-8 opacity-50 cursor-not-allowed">
+                            </span>
+                        </div>
+                    @endif
                 @endauth
             </div>
         @endforeach
