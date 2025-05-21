@@ -26,7 +26,15 @@
                 <!-- Ícone do utilizador -->
                 <div class="relative">
                     <button id="userDropdownBtn" class="focus:outline-none">
-                        <img src="{{ asset('images/logos/user_icon.png') }}" alt="User Icon" class="w-10 h-10 rounded-full border border-gray-300 shadow-sm hover:ring-2 hover:ring-blue-300 transition-all duration-200">
+                        @auth
+                            <img src="{{ Auth::user()->profile_photo_url ?? asset('images/logos/user_icon.png') }}" 
+                                 alt="{{ Auth::user()->name }}" 
+                                 class="w-10 h-10 rounded-full border border-gray-300 shadow-sm hover:ring-2 hover:ring-blue-300 transition-all duration-200" />
+                        @else
+                            <img src="{{ asset('images/logos/user_icon.png') }}" 
+                                 alt="User Icon" 
+                                 class="w-10 h-10 rounded-full border border-gray-300 shadow-sm hover:ring-2 hover:ring-blue-300 transition-all duration-200" />
+                        @endauth
                     </button>
 
                     <div id="userDropdownMenu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50">

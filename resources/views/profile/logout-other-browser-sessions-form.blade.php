@@ -1,28 +1,30 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Browser Sessions') }}
+        {{ __('Sessões do Navegador') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Manage and log out your active sessions on other browsers and devices.') }}
+        {{ __('Gere e termina sessão nas sessões ativas noutros navegadores e dispositivos.') }}
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
-            {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
+            {{ __('Se necessário, podes terminar sessão em todas as outras sessões do navegador nos teus dispositivos. Algumas das tuas sessões recentes estão listadas abaixo; no entanto, esta lista pode não ser exaustiva. Se achares que a tua conta foi comprometida, deves também atualizar a tua palavra-passe.') }}
         </div>
 
         @if (count($this->sessions) > 0)
             <div class="mt-5 space-y-6">
-                <!-- Other Browser Sessions -->
+                <!-- Outras Sessões do Navegador -->
                 @foreach ($this->sessions as $session)
                     <div class="flex items-center">
                         <div>
                             @if ($session->agent->isDesktop())
+                                <!-- Ícone de Desktop -->
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-500">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                                 </svg>
                             @else
+                                <!-- Ícone de Telemóvel -->
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-500">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
                                 </svg>
@@ -31,7 +33,7 @@
 
                         <div class="ms-3">
                             <div class="text-sm text-gray-600">
-                                {{ $session->agent->platform() ? $session->agent->platform() : __('Unknown') }} - {{ $session->agent->browser() ? $session->agent->browser() : __('Unknown') }}
+                                {{ $session->agent->platform() ? $session->agent->platform() : __('Desconhecido') }} - {{ $session->agent->browser() ? $session->agent->browser() : __('Desconhecido') }}
                             </div>
 
                             <div>
@@ -39,9 +41,9 @@
                                     {{ $session->ip_address }},
 
                                     @if ($session->is_current_device)
-                                        <span class="text-green-500 font-semibold">{{ __('This device') }}</span>
+                                        <span class="text-green-500 font-semibold">{{ __('Este dispositivo') }}</span>
                                     @else
-                                        {{ __('Last active') }} {{ $session->last_active }}
+                                        {{ __('Última atividade') }} {{ $session->last_active }}
                                     @endif
                                 </div>
                             </div>
@@ -53,27 +55,27 @@
 
         <div class="flex items-center mt-5">
             <x-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Log Out Other Browser Sessions') }}
+                {{ __('Terminar Sessões Noutros Navegadores') }}
             </x-button>
 
             <x-action-message class="ms-3" on="loggedOut">
-                {{ __('Done.') }}
+                {{ __('Concluído.') }}
             </x-action-message>
         </div>
 
-        <!-- Log Out Other Devices Confirmation Modal -->
+        <!-- Modal de Confirmação para Terminar Sessões -->
         <x-dialog-modal wire:model.live="confirmingLogout">
             <x-slot name="title">
-                {{ __('Log Out Other Browser Sessions') }}
+                {{ __('Terminar Sessões Noutros Navegadores') }}
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.') }}
+                {{ __('Por favor, introduz a tua palavra-passe para confirmar que queres terminar sessão nas outras sessões do navegador nos teus dispositivos.') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-input type="password" class="mt-1 block w-3/4"
                                 autocomplete="current-password"
-                                placeholder="{{ __('Password') }}"
+                                placeholder="{{ __('Palavra-passe') }}"
                                 x-ref="password"
                                 wire:model="password"
                                 wire:keydown.enter="logoutOtherBrowserSessions" />
@@ -84,13 +86,13 @@
 
             <x-slot name="footer">
                 <x-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
-                    {{ __('Cancel') }}
+                    {{ __('Cancelar') }}
                 </x-secondary-button>
 
                 <x-button class="ms-3"
                             wire:click="logoutOtherBrowserSessions"
                             wire:loading.attr="disabled">
-                    {{ __('Log Out Other Browser Sessions') }}
+                    {{ __('Terminar Sessões Noutros Navegadores') }}
                 </x-button>
             </x-slot>
         </x-dialog-modal>

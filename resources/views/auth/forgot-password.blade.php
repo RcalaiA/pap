@@ -1,11 +1,11 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img src="{{ asset('images/logos/logo2.png') }}" alt="Logo" />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('Esqueceu-se da palavra-passe? Não há problema. Basta indicar o seu endereço de email e nós enviaremos um link para redefinir a palavra-passe que lhe permitirá escolher uma nova.') }}
         </div>
 
         @session('status')
@@ -26,7 +26,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('Enviar Link para Redefinir Palavra-passe') }}
                 </x-button>
             </div>
         </form>

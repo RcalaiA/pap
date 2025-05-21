@@ -9,7 +9,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CommentController; // Importar o CommentController
 use Illuminate\Support\Facades\Auth;
 
-Auth::loginUsingId(1); // Corrigi o método para camelCase
+//Auth::loginUsingId(1); // Corrigi o método para camelCase
 
 // Página inicial com histórias (caso necessário)
 Route::get('/', function () {
