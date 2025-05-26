@@ -24,14 +24,14 @@
     </div>
 
     <!-- Faixa Etária -->
-    <div>
+    <!--<div>
       <label class="block mb-2 font-bold">Faixa Etária</label>
       <div class="space-y-1">
         <label><input type="checkbox" name="faixa[]" value="Crianças (6-10 anos)" {{ in_array('Crianças (6-10 anos)', (array) request('faixa', [])) ? 'checked' : '' }}> Crianças (6-10 anos)</label><br>
         <label><input type="checkbox" name="faixa[]" value="Adolescentes (11-17 anos)" {{ in_array('Adolescentes (11-17 anos)', (array) request('faixa', [])) ? 'checked' : '' }}> Adolescentes (11-17 anos)</label><br>
         <label><input type="checkbox" name="faixa[]" value="Adultos (18 ou mais)" {{ in_array('Adultos (18 ou mais)', (array) request('faixa', [])) ? 'checked' : '' }}> Adultos (18 ou mais)</label>
       </div>
-    </div>
+    </div>-->
 
     <!-- Idioma -->
     <div>
@@ -43,7 +43,7 @@
     </div>
 
     <!-- Ano (Intervalo de Datas) -->
-    <div>
+    <!--<div>
       <label class="block mb-2 font-bold">Ano</label>
       <div class="flex flex-col space-y-2">
         <div>
@@ -57,7 +57,7 @@
                  value="{{ request('data_fim') }}">
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- Botão -->
     <div class="text-right pt-4">

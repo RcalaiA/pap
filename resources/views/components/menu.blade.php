@@ -20,7 +20,7 @@
                 <!-- Links principais -->
                 <div class="hidden md:flex md:items-center md:space-x-8">
                     <a href="/literacias" class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium tracking-wide">Literacias</a>
-                    <a href="/comunidade" class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium tracking-wide">Comunidade</a>
+                    <!--<a href="/comunidade" class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium tracking-wide">Comunidade</a>-->
                 </div>
 
                 <!-- Ícone do utilizador -->
@@ -40,7 +40,7 @@
                     <div id="userDropdownMenu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50">
                         <div class="py-1">
                             @auth
-                                <a href="{{ route('favorites.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-150">Favoritos</a>
+                                <!--<a href="{{ route('favorites.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-150">Favoritos</a>-->
                                 <a href="/user/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-150">Definições</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

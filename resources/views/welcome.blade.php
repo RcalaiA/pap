@@ -12,6 +12,10 @@
             <p class="mt-4 text-xl max-w-2xl text-green-500">
                 Junte-se a uma comunidade dedicada à construção de competências essenciais para o século XXI.
             </p>
+            <a href="{{ route('literacies.index') }}"
+               class="mt-6 inline-block bg-green-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-green-600 transition">
+                CONHECER LITERACIAS
+            </a>
         </div>
     </section>
 
