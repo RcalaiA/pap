@@ -79,26 +79,6 @@ class DocumentSeeder extends Seeder
         ]);
 
         $document = Document::create([
-            'title' => 'Literacia de Direitos Humanos - Guia de Implementação',
-            'image' => 'direitos_humanos.png',
-            'description' => 'Este guia orienta sobre como promover a literacia de direitos humanos...',
-            'url' => 'https://dge.mec.pt/sites/default/files/ficheiros/literacia_de_direitos_humanos_guia.pdf',
-            'format' => 'PDF',
-            'age_group' => '11-14',
-            'is_interactive' => false,
-            'has_download' => true,
-            'duration' => null,
-            'language' => 'Português',
-            'font' => 'DGE',
-            'published_at' => '2024-11-05',
-        ]);
-
-        DB::table('document_literacy')->insert([
-            'document_id' => $document->id,
-            'literacy_id' => $rights_id,
-        ]);
-
-        $document = Document::create([
             'title' => 'Estratégia Nacional de Educação Ambiental',
             'image' => 'estrategia_ambiental.png',
             'description' => 'Este documento detalha as diretrizes da estratégia nacional para promover a literacia ambiental...',
@@ -244,26 +224,6 @@ class DocumentSeeder extends Seeder
         ]);
 
         $document = Document::create([
-            'title' => 'The Human Rights Education Handbook',
-            'image' => 'human_rights_handbook.png',
-            'description' => 'Manual prático para educadores que desejam implementar programas eficazes de educação em direitos humanos.',
-            'url' => 'https://hrlibrary.umn.edu/edumat/pdf/hreh.pdf',
-            'format' => 'PDF',
-            'age_group' => 'Adultos',
-            'is_interactive' => false,
-            'has_download' => true,
-            'duration' => null,
-            'language' => 'Inglês',
-            'font' => 'University of Minnesota',
-            'published_at' => '2000-01-01',
-        ]);
-
-        DB::table('document_literacy')->insert([
-            'document_id' => $document->id,
-            'literacy_id' => $rights_id,
-        ]);
-
-        $document = Document::create([
             'title' => 'Literacia Ambiental: Um Desafio à Didática e à Matética',
             'image' => 'literacia_ambiental_uma.png',
             'description' => 'Estudo que aborda a importância da literacia ambiental na educação, destacando desafios e estratégias pedagógicas.',
@@ -382,5 +342,174 @@ class DocumentSeeder extends Seeder
             'document_id' => $document->id,
             'literacy_id' => $media_id,
         ]);
+
+        // Vídeo: A importância da Literacia Digital
+        $document = Document::create([
+            'title' => 'A importância da Literacia Digital',
+            'image' => 'Captura de ecrã 2025-05-25 170404.png',
+            'description' => 'Vídeo educativo explicando o papel da literacia digital no mundo moderno.',
+            'url' => 'https://www.youtube.com/watch?v=3uLLivFGlfE',
+            'format' => 'Vídeo',
+            'age_group' => 'Todos',
+            'is_interactive' => false,
+            'has_download' => false,
+            'duration' => 8,
+            'language' => 'Português',
+            'font' => 'YouTube / ONU',
+            'published_at' => '2024-10-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $digital_id,
+        ]);
+
+        // Relatório da União Internacional de Telecomunicações
+        $document = Document::create([
+            'title' => 'Relatório Mundial sobre Literacia Digital',
+            'image' => 'Captura de ecrã 2025-05-25 170521.png',
+            'description' => 'Publicação da UIT com dados e análises sobre inclusão digital global.',
+            'url' => 'https://www.itu.int/ITU-D/ict/publications/wtdr_10/material/WTDR2010_e_v1.pdf',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'União Internacional de Telecomunicações',
+            'published_at' => '2010-05-15',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $digital_id,
+        ]);
+
+        // Documento da UNESCO sobre competências digitais
+        $document = Document::create([
+            'title' => 'Competências Digitais para a Vida',
+            'image' => 'Captura de ecrã 2025-05-25 170645.png',
+            'description' => 'Estudo da UNESCO sobre a importância das competências digitais no século XXI.',
+            'url' => 'https://unesdoc.unesco.org/ark:/48223/pf0000265403.locale=en',
+            'format' => 'PDF',
+            'age_group' => 'Adultos',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'UNESCO',
+            'published_at' => '2018-04-03',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $digital_id,
+        ]);
+
+        // Definição simples de literacia digital
+        $document = Document::create([
+            'title' => 'O que é Literacia Digital? (Twinkl)',
+            'image' => 'Captura de ecrã 2025-05-25 170943.png',
+            'description' => 'Explicação clara e acessível sobre literacia digital, voltada para educadores.',
+            'url' => 'https://www.twinkl.pt/teaching-wiki/digital-literacy',
+            'format' => 'Website',
+            'age_group' => 'Educadores / Jovens',
+            'is_interactive' => false,
+            'has_download' => false,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'Twinkl',
+            'published_at' => '2023-08-10',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $digital_id,
+        ]);
+
+        // Artigo: O que é Literacia Digital?
+        $document = Document::create([
+            'title' => 'What is Digital Literacy?',
+            'image' => 'Captura de ecrã 2025-05-25 171050.png',
+            'description' => 'Artigo introdutório sobre o conceito de literacia digital e sua importância.',
+            'url' => 'https://potomac.edu/what-is-digital-literacy/',
+            'format' => 'Artigo',
+            'age_group' => 'Jovens e adultos',
+            'is_interactive' => false,
+            'has_download' => false,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'University of the Potomac',
+            'published_at' => '2023-05-22',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $digital_id,
+        ]);
+
+        // Top 10 competências em literacia computacional
+        $document = Document::create([
+            'title' => 'Top 10 Computer Literacy Skills for Success',
+            'image' => 'Captura de ecrã 2025-05-25 171255.png',
+            'description' => 'Lista das principais competências em literacia computacional para o mercado de trabalho.',
+            'url' => 'https://www.ebsco.com/blogs/ebscopost/2525500/top-10-computer-literacy-skills-success',
+            'format' => 'Artigo',
+            'age_group' => 'Adultos / Jovens',
+            'is_interactive' => false,
+            'has_download' => false,
+            'duration' => null,
+            'language' => 'Inglês',
+            'font' => 'EBSCO',
+            'published_at' => '2022-11-30',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $computation_id,
+        ]);
+
+        // Definição de literacia computacional (Twinkl)
+        $document = Document::create([
+            'title' => 'O que é Literacia Computacional? (Twinkl)',
+            'image' => 'Captura de ecrã 2025-05-25 171421.png',
+            'description' => 'Página explicativa sobre o conceito de literacia computacional para professores e alunos.',
+            'url' => 'https://www.twinkl.pt/teaching-wiki/computer-literacy',
+            'format' => 'Website',
+            'age_group' => 'Crianças / Educadores',
+            'is_interactive' => false,
+            'has_download' => false,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'Twinkl',
+            'published_at' => '2023-06-20',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $computation_id,
+        ]);
+
+        // Artigo académico sobre promoção de literacia digital com dispositivos móveis
+        $document = Document::create([
+            'title' => 'Promoção da Literacia Digital com Dispositivos Móveis',
+            'image' => 'Captura de ecrã 2025-05-25 175104.png',
+            'description' => 'Artigo académico com experiências pedagógicas no ensino profissional.',
+            'url' => 'https://www.researchgate.net/publication/321426361_Promocao_da_literacia_digital_atraves_de_dispositivos_moveis_experiencias_pedagogicas_no_ensino_profissional',
+            'format' => 'PDF / Artigo Académico',
+            'age_group' => 'Professores / Universitários',
+            'is_interactive' => false,
+            'has_download' => true,
+            'duration' => null,
+            'language' => 'Português',
+            'font' => 'ResearchGate',
+            'published_at' => '2017-12-01',
+        ]);
+
+        DB::table('document_literacy')->insert([
+            'document_id' => $document->id,
+            'literacy_id' => $computation_id,
+        ]);
+
     }
 }
